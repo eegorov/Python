@@ -1444,7 +1444,7 @@ newchannelid(PyTypeObject *cls, int64_t cid, int end, _channels *channels,
         return NULL;
     }
     self->id = cid;
-	self->ob_type = &PyType_Type;
+	self->ob_base.ob_type = &PyType_Type;
     self->end = end;
     self->resolve = resolve;
     self->channels = channels;
