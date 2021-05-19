@@ -57,8 +57,6 @@ _Py_IDENTIFIER(threading);
 extern "C" {
 #endif
 
-extern grammar _PyParser_Grammar; /* From graminit.c */
-
 /* Forward */
 static PyStatus add_main_module(PyInterpreterState *interp);
 static PyStatus init_import_size(void);
@@ -1340,7 +1338,7 @@ Py_FinalizeEx(void)
        - whatever various modules and libraries allocate
     */
 
-    PyGrammar_RemoveAccelerators(&_PyParser_Grammar);
+    PyGrammar_RemoveAccelerators(get_PyParser_Grammar());
 
     /* Cleanup auto-thread-state */
     _PyGILState_Fini(runtime);

@@ -57,8 +57,6 @@ _Py_static_string(PyId_string, "<string>");
 extern "C" {
 #endif
 
-extern grammar _PyParser_Grammar; /* From graminit.c */
-
 /* Forward */
 static void flush_io(void);
 static PyObject *run_mod(mod_ty, PyObject *, PyObject *, PyObject *,
@@ -1381,7 +1379,7 @@ PyParser_ASTFromStringObject(const char *s, PyObject *filename, int start,
         iflags |= PyPARSE_ASYNC_HACKS;
 
     node *n = PyParser_ParseStringObject(s, filename,
-                                         &_PyParser_Grammar, start, &err,
+                                         get_PyParserGrammar(), start, &err,
                                          &iflags);
     if (flags == NULL) {
         flags = &localflags;
@@ -1425,7 +1423,7 @@ PyParser_ASTFromFileObject(FILE *fp, PyObject *filename, const char* enc,
     int iflags = PARSER_FLAGS(flags);
 
     node *n = PyParser_ParseFileObject(fp, filename, enc,
-                                       &_PyParser_Grammar,
+                                       get_PyParserGrammar(),
                                        start, ps1, ps2, &err, &iflags);
     if (flags == NULL) {
         flags = &localflags;
@@ -1469,7 +1467,7 @@ PyParser_SimpleParseFileFlags(FILE *fp, const char *filename, int start, int fla
 {
     perrdetail err;
     node *n = PyParser_ParseFileFlags(fp, filename, NULL,
-                                      &_PyParser_Grammar,
+                                      get_PyParserGrammar(),
                                       start, NULL, NULL, &err, flags);
     if (n == NULL)
         err_input(&err);
@@ -1484,7 +1482,7 @@ node *
 PyParser_SimpleParseStringFlags(const char *str, int start, int flags)
 {
     perrdetail err;
-    node *n = PyParser_ParseStringFlags(str, &_PyParser_Grammar,
+    node *n = PyParser_ParseStringFlags(str, get_PyParserGrammar(),
                                         start, &err, flags);
     if (n == NULL)
         err_input(&err);
@@ -1498,7 +1496,7 @@ PyParser_SimpleParseStringFlagsFilename(const char *str, const char *filename,
 {
     perrdetail err;
     node *n = PyParser_ParseStringFlagsFilename(str, filename,
-                            &_PyParser_Grammar, start, &err, flags);
+                            get_PyParserGrammar(), start, &err, flags);
     if (n == NULL)
         err_input(&err);
     err_free(&err);

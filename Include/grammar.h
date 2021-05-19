@@ -70,6 +70,7 @@ const dfa *PyGrammar_FindDFA(grammar *g, int type);
 const char *PyGrammar_LabelRepr(label *lb);
 void PyGrammar_AddAccelerators(grammar *g);
 void PyGrammar_RemoveAccelerators(grammar *);
+grammar *get_PyParserGrammar(void);
 
 #ifdef __cplusplus
 }

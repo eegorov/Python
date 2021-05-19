@@ -2699,3 +2699,9 @@ grammar _PyParser_Grammar = {
     {183, labels},
     256
 };
+
+grammar *get_PyParserGrammar(void)
+{
+        return(&_PyParser_Grammar);
+}
+
