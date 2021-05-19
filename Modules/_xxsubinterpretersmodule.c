@@ -1444,6 +1444,7 @@ newchannelid(PyTypeObject *cls, int64_t cid, int end, _channels *channels,
         return NULL;
     }
     self->id = cid;
+	self->ob_type = &PyType_Type;
     self->end = end;
     self->resolve = resolve;
     self->channels = channels;
@@ -1751,7 +1752,7 @@ PyDoc_STRVAR(channelid_doc,
 "A channel ID identifies a channel and may be used as an int.");
 
 static PyTypeObject ChannelIDtype = {
-    PyVarObject_HEAD_INIT(&PyType_Type, 0)
+    PyVarObject_HEAD_INIT(0, 0)
     "_xxsubinterpreters.ChannelID", /* tp_name */
     sizeof(channelid),              /* tp_basicsize */
     0,                              /* tp_itemsize */
