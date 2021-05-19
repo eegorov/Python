@@ -1338,7 +1338,7 @@ Py_FinalizeEx(void)
        - whatever various modules and libraries allocate
     */
 
-    PyGrammar_RemoveAccelerators(get_PyParser_Grammar());
+    PyGrammar_RemoveAccelerators(get_PyParserGrammar());
 
     /* Cleanup auto-thread-state */
     _PyGILState_Fini(runtime);
