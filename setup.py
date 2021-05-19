@@ -1922,7 +1922,7 @@ class PyBuildExt(build_ext):
             if not os.path.exists(ffi_h):
                 ffi_inc = None
                 print('Header file {} does not exist'.format(ffi_h))
-        ffi_lib = None
+        ffi_lib = 'ffi'
         if ffi_inc is not None:
             for lib_name in ('ffi', 'ffi_pic'):
                 if (self.compiler.find_library_file(self.lib_dirs, lib_name)):
